@@ -10,8 +10,7 @@
 
 <style>
   body{
-/*    background-color: #1b242b;
-    color: antiquewhite;*/
+    box-sizing: border-box;
   }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

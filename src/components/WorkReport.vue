@@ -1,90 +1,55 @@
 <template>
-	<div class="a4">
-		<div style="display: grid; grid-template-columns: 4fr 6fr">
-			<div style=""></div>
-			<div style="background-color: #bbbbbb">報告</div>
-			<div style="background-color: #bbbbbb">予定</div>
-			<div style="">名前：</div>
+	<div>
+		<div class="ctrl">
+			<button @click="isEditMode = !isEditMode">編集モード切り替え</button>
 		</div>
-
-		<hr/>
-
-		<div style="display: grid; grid-template-columns: 1.5em repeat(44, 1fr)">
-			<div style="background-color: #bbbbbb; grid-row: span 2">予定</div>
-			<div>8</div>
-			<div
-					v-for="h in [9,10,11,12,13,14,15,16,17,18]" v-bind:key="h"
-					style="grid-column: span 4"
-			>
-				{{h}}
+		<div class="a4">
+			<div style="display: grid; grid-template-columns: 4fr 6fr">
+				<EditAndShow :is-edit-mode="isEditMode" placeholder="日付"></EditAndShow>
+				<div style="background-color: #bbbbbb">報告</div>
+				<div style="background-color: #bbbbbb">予定</div>
+				<EditAndShow :is-edit-mode="isEditMode" placeholder="名前"></EditAndShow>
 			</div>
-			<div style="grid-column: span 3">19</div>
 
-			<div
-					v-for="(workArr, index) in gridArr"
-					:key="'w' + index"
-					:style="{
-						'grid-column-start': workArr[0] + 1,
-						'grid-column-end': 'span '+workArr[1],
-						}"
-					style="border: 1px solid"
-			>{{workArr[2]}}</div>
+			<hr/>
+			<ScheduleEditor :is-edit-mode="isEditMode">予定</ScheduleEditor>
+			<ScheduleEditor :is-edit-mode="isEditMode">実績</ScheduleEditor>
+
+			<EditAndShow placeholder="目標" is-big-mode :is-edit-mode="isEditMode"></EditAndShow>
+			<EditAndShow placeholder="成果" is-big-mode :is-edit-mode="isEditMode"></EditAndShow>
+			<hr/>
+			<EditAndShow placeholder="問題点" is-big-mode :is-edit-mode="isEditMode"></EditAndShow>
+			<EditAndShow placeholder="原因" is-big-mode :is-edit-mode="isEditMode"></EditAndShow>
+			<EditAndShow placeholder="対策" is-big-mode :is-edit-mode="isEditMode"></EditAndShow>
 
 		</div>
+
 
 	</div>
 </template>
 
 <script>
-	const time_start = '0845';
-	const time_end = '1945';
-	const timeToMinuteStamp = function (timeStr4) {
-		return parseInt(timeStr4.substr(0, 2))
-			* 60 + parseInt(timeStr4.substr(2, 2));
-	}
-	const timeToGridNo = function (timeStr4, shift = 0) {
-		let timeTotal =
-			timeToMinuteStamp(time_end) - timeToMinuteStamp(time_start);
-		let timeInput = timeToMinuteStamp(timeStr4 + shift) - timeToMinuteStamp(time_start);
-		let num = timeTotal/15;
-		let rate = timeInput / timeTotal;
-		return Math.floor(num * rate) + 1;
-	}
-	const workArrayToParams = function (arr) {
-		let time1 = arr[0];
-		let time2 = arr[1];
-		let note = arr[2];
-		let no1 = timeToGridNo(time1);
-		let no2 = timeToGridNo(time2, -1) - no1;
-		return [no1, no2, note];
-	}
+
+	import ScheduleEditor from "./parts/ScheduleEditor";
+	import EditAndShow from "./parts/EditAndShow";
 	export default {
 		name: "WorkReport",
+		components: {EditAndShow, ScheduleEditor},
 		data() {
 			return {
-				day: [
-					['0845', '1000', 'MT・報告・連絡'],
-					['1000', '1130', 'コーディング'],
-					['0915', '1200', 'ワイドスクランブル'],
-					['1300', '1445', 'ドラマ再放送']
-				],
-				ccc: 12,
-				ddd: 5,
+				isEditMode: true,
 			}
 		},
 		created() {
-			console.log(
-				workArrayToParams(this.day[0])
-			)
+/*			console.log(
+				this.gridArrSorted
+			)*/
 		},
 		computed:{
-			gridArr: function () {
-				let res = [];
-				for (let i = 0; i < this.day.length; i++) {
-					res.push(workArrayToParams(this.day[i]))
-				}
-				return res;
-			}
+
+		},
+		methods:{
+
 		}
 	}
 </script>
@@ -94,5 +59,16 @@
 		border: 1px solid #cccccc;
 		box-sizing: border-box;
 		padding: 5%;
+	}
+
+	@media print {
+		.ctrl{
+			display: none;
+		}
+
+		.a4{
+			border: none;
+			padding: inherit;
+		}
 	}
 </style>
