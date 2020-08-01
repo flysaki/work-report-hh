@@ -112,16 +112,13 @@
 		},
 		methods:{
 			timeToMinuteStamp: function (timeStr4) {
-				console.log(timeStr4);
 				if(!timeStr4) return 0;
 				return parseInt(timeStr4.substr(0, 2))
 					* 60 + parseInt(timeStr4.substr(2, 2));
 			},
 			timeToGridNo: function (timeStr4, shift = 0) {
-				console.log('timeToGridNo', time_end, time_start);
 				let timeTotal =
 					this.timeToMinuteStamp(time_end) - this.timeToMinuteStamp(time_start);
-				console.log('timeToGridNo 2', timeStr4 + shift, time_start);
 				let timeInput = this.timeToMinuteStamp(timeStr4) + shift - this.timeToMinuteStamp(time_start);
 				let num = timeTotal/15;
 				let rate = timeInput / timeTotal;
