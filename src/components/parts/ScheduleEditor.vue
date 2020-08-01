@@ -6,7 +6,7 @@
 		grid-template-columns: 1.5em repeat(44, 1fr);
 		border: 1px solid;">
 
-			<div class="centerAlign" style="background-color: #bbbbbb; grid-row: span 5;"><slot/></div>
+			<div class="centerAlign grayDiv" style="grid-row: span 5;"><slot/></div>
 
 			<div
 					v-for="h in gridArrHeader" v-bind:key="'header' + h[0]"

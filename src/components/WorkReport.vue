@@ -6,8 +6,8 @@
 		<div class="a4">
 			<div style="display: grid; grid-template-columns: 4fr 6fr">
 				<EditAndShow :is-edit-mode="isEditMode" placeholder="日付"></EditAndShow>
-				<div style="background-color: #bbbbbb">報告</div>
-				<div style="background-color: #bbbbbb">予定</div>
+				<div class="grayDiv">報告</div>
+				<div class="grayDiv"></div>
 				<EditAndShow :is-edit-mode="isEditMode" placeholder="名前"></EditAndShow>
 			</div>
 

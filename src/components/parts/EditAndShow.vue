@@ -5,7 +5,7 @@
 			<div v-if="!isEditMode">{{inputText || (placeholder+'未入力')}}</div>
 		</div>
 		<div v-if="isBigMode">
-			<div style="padding: 0.3em 1em; background-color: #bbbbbb; color: #fff; width: fit-content">{{placeholder}}</div>
+			<div class="grayDiv" style="padding: 0.3em 1em; width: fit-content">{{placeholder}}</div>
 			<textarea v-if="isEditMode" v-model="inputText" style="height: 3em; width: 100%;"></textarea>
 			<div v-if="!isEditMode" class="centerAlign" style="white-space: pre; border: 1px solid;min-height: 3em;">{{inputText || (placeholder+'未入力')}}</div>
 		</div>
