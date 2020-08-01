@@ -129,7 +129,7 @@
 				let time2 = arr[1];
 				let note = arr[2];
 				let no1 = this.timeToGridNo(time1);
-				let no2 = this.timeToGridNo(time2, -1) - no1;
+				let no2 = this.timeToGridNo(time2) - no1;
 				return [no1, no2, note];
 			}
 		}

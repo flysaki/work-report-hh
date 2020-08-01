@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import WorkReport from "../components/WorkReport";
+import WorkReport from "../views/WorkReport";
 
 Vue.use(VueRouter)
 

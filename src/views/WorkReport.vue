@@ -30,8 +30,8 @@
 
 <script>
 
-	import ScheduleEditor from "./parts/ScheduleEditor";
-	import EditAndShow from "./parts/EditAndShow";
+	import ScheduleEditor from "../components/parts/ScheduleEditor";
+	import EditAndShow from "../components/parts/EditAndShow";
 	export default {
 		name: "WorkReport",
 		components: {EditAndShow, ScheduleEditor},
@@ -70,5 +70,10 @@
 			border: none;
 			padding: inherit;
 		}
+	}
+</style>
+<style>
+	body{
+		-webkit-print-color-adjust: exact;
 	}
 </style>
